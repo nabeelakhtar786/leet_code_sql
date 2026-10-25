@@ -1,8 +1,8 @@
-select e1.employee_id
-from employees e1
-left join employees e2 
-on e1.manager_id=e2.employee_id
-where e1.salary < 30000 and 
- e1.manager_id is not null and e2.employee_id is null
- order by employee_id;
-
+SELECT employee_id
+FROM Employees
+WHERE salary < 30000
+  AND manager_id NOT IN (
+    SELECT employee_id
+    FROM Employees
+  )
+ORDER BY employee_id;
